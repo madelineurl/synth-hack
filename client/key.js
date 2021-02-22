@@ -1,10 +1,10 @@
 import React from "react";
 
-const Key = ({ color }) => {
-  const keyStyle = color === 'white' ? 'white-key' : 'black-key';
+const Key = ({ color, note }) => {
+  const keyStyle = color === 'white' ? 'key white' : 'key black';
 
   return (
-    <span className={keyStyle}/>
+    <span className={keyStyle}>{note}</span>
   );
 };
 

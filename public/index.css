@@ -6,3 +6,24 @@ body {
 body * {
   box-sizing: border-box;
 }
+
+.synth {
+  position: relative;
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.key.white {
+  border: 1px solid black;
+  width: 100px;
+  height: 40vh;
+}
+
+.key.black {
+  color: #fff;
+  background-color: black;
+  /* width: 40px; */
+  height: 150px;
+}
