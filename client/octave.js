@@ -1,22 +1,22 @@
 import React from "react";
-import Key from "./key"
+import Key from "./key";
 
-const Octave = () => {
+const Octave = ({ synth, octave }) => {
   return (
-    <>
-      <Key color='white' note='C'/>
-      <Key color='black' note='C#/Db'/>
-      <Key color='white' note='D'/>
-      <Key color='black' note='D#/Eb'/>
-      <Key color='white' note='E'/>
-      <Key color='white' note='F'/>
-      <Key color='black' note='F#/Gb'/>
-      <Key color='white' note='G'/>
-      <Key color='black' note='G#/Ab'/>
-      <Key color='white' note='A'/>
-      <Key color='black' note='A#/Bb'/>
-      <Key color='white' note='B'/>
-    </>
+    <ul>
+      <Key color='white' note='C'octave={octave} synth={synth} />
+      <Key color='black' note='C#' octave={octave} synth={synth}/>
+      <Key color='white' note='D' octave={octave} synth={synth}/>
+      <Key color='black' note='D#' octave={octave} synth={synth}/>
+      <Key color='white' note='E' octave={octave} synth={synth}/>
+      <Key color='white' note='F' octave={octave} synth={synth}/>
+      <Key color='black' note='F#' octave={octave} synth={synth}/>
+      <Key color='white' note='G' octave={octave} synth={synth}/>
+      <Key color='black' note='G#' octave={octave} synth={synth}/>
+      <Key color='white' note='A' octave={octave} synth={synth}/>
+      <Key color='black' note='A#' octave={octave} synth={synth}/>
+      <Key color='white' note='B' octave={octave} synth={synth}/>
+    </ul>
   );
 };
 

@@ -26,4 +26,5 @@ body * {
   background-color: black;
   /* width: 40px; */
   height: 150px;
+  position: sticky;
 }
