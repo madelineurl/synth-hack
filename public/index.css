@@ -7,19 +7,27 @@ body * {
   box-sizing: border-box;
 }
 
+.synth {
+  width: 1000px;
+  margin: 10vh auto;
+}
+
 ul.keyboard {
   list-style-type: none;
   position: relative;
   display: flex;
   justify-content: center;
-  width: 1000px;
   height: 20rem;
-  margin: 10vh auto;
-  padding: 3em 0 0 1em;
+  padding: 3em 1em 0;
   border: 1px solid #160801;
   border-radius: 1rem;
-  background: linear-gradient(to bottom right,rgba(0,0,0,0.3),rgba(0,0,0,0)),url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/187/vwood.png);
+  background: linear-gradient(to bottom right,rgba(0,0,0,0.3),rgba(0,0,0,0));
   box-shadow: 0 0 50px rgba(0,0,0,0.5) inset,0 1px rgba(212,152,125,0.2) inset,0 5px 15px rgba(0,0,0,0.5)
+  /* url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/187/vwood.png) */
+}
+
+ul.keyboard:first-of-type(.key.white) {
+  border-radius: 5px 0 5px 5px;
 }
 
 li {
@@ -31,18 +39,14 @@ li {
 }
 
 .key.white {
-  /* border: 1px solid black;
-  width: 100px;
-  height: 40vh;
-  background: #fff; */
   height: 16em;
   width: 3em;
   z-index: 1;
   border-left: 1px solid #bbb;
   border-bottom: 1px solid #bbb;
   border-radius: 0 0 5px 5px;
-  box-shadow: -1px 0 0 rgba(255,255,255,0.8) inset,0 0 5px #ccc inset,0 0 3px rgba(0,0,0,0.2);
-  background:linear-gradient(to bottom,#eee 0%,#fff 100%);
+  box-shadow: -1px 0 0 rgba(255,255,255,0.8) inset, 0 0 5px #ccc inset,0 0 3px rgba(0,0,0,0.2);
+  background: linear-gradient(to bottom,#eee 0%,#fff 100%);
   z-index: 1;
 }
 
@@ -63,6 +67,6 @@ li {
   background: linear-gradient(45deg,#222 0%,rgb(33, 32, 32) 100%);
 }
 
-.A,.G,.E,.D,.B {
+.G, .A, .B, .D, .E {
   margin: 0 0 0 -1em;
 }
