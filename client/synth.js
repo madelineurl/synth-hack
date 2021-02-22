@@ -6,11 +6,11 @@ const Synth = () => {
   const synth = new Tone.Synth().toDestination();
 
   return (
-    <div className='synth'>
+    <ul className='keyboard'>
       <Octave octave='3' synth={synth} />
       <Octave octave='4' synth={synth} />
       <Octave octave='5' synth={synth}/>
-    </div>
+    </ul>
   );
 };
 
