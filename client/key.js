@@ -4,7 +4,7 @@ const Key = ({ color, note, synth, octave }) => {
   const keyStyle = color === 'white' ? 'key white' : 'key black';
 
   const handleNote = () => {
-    synth.triggerAttackRelease(`${note}${octave}`, "8n");
+    synth.triggerAttackRelease(`${note}${octave.toString()}`, "8n");
   };
 
   return (
