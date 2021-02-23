@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import Octave from "./octave";
 import * as Tone from 'tone';
 
@@ -22,6 +23,9 @@ const Synth = () => {
   }).toDestination();
 
   return (
+    <>
+    <Link to='/'>back</Link>
+    <button>how-to</button>
     <div className='synth'>
       <label htmlFor='select-wave'>WAVE</label>
       <select
@@ -52,6 +56,7 @@ const Synth = () => {
         <Octave octave={lowestOctave + 2} synth={synth}/>
       </ul>
     </div>
+    </>
   );
 };
 

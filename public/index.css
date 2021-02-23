@@ -7,6 +7,31 @@ body * {
   box-sizing: border-box;
 }
 
+ul#navbar {
+  top: 0;
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar li {
+  margin: 1rem;
+}
+
+#landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  margin: 20vh auto;
+}
+
+#landing h1 {
+  margin: 0;
+}
+
 .synth {
   width: 1000px;
   margin: 10vh auto;
