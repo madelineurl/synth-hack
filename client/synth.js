@@ -18,14 +18,16 @@ const Synth = () => {
 
   const synth = new Tone.PolySynth(Tone.Synth, {
     oscillator: {
-      type : waveType
+      type: waveType
     }
   }).toDestination();
 
   return (
     <>
-    <Link to='/'>back</Link>
-    <button>how-to</button>
+    <ul id='navbar'>
+      <li><Link to='/'>back</Link></li>
+      <li><button>how-to</button></li>
+    </ul>
     <div className='synth'>
       <label htmlFor='select-wave'>WAVE</label>
       <select
