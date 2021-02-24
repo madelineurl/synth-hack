@@ -8,9 +8,31 @@ const Synth = () => {
   const [waveType, setWaveType] = useState('sine');
   const [lowestOctave, setLowestOctave] = useState(3);
   const [volume, setVolume] = useState(-6);
+  const [pitch, setPitch] = useState(0);
+  const [bpm, setBpm] = useState(120);
 
-  const setMainVol = (evt) => {
+  const mainVol = new Tone.Volume(volume);
+  Tone.Transport.bpm.value = bpm;
+  // add metronome to test
+
+  const synth = new Tone.Synth({
+    oscillator: {
+      type: waveType
+    }
+  }).chain(mainVol, Tone.Destination);
+
+  const adjustMainVol = (evt) => {
     setVolume(evt.target.value);
+  };
+
+  const adjustTempo = (evt) => {
+    setBpm(evt.target.value);
+  };
+
+  const adjustPitch = (evt) => {
+    setPitch(evt.target.value);
+    synth.set({ detune: evt.target.value });
+    // successfully resetting pitch, but but has no audible effect
   };
 
   const selectWaveType = (evt) => {
@@ -21,16 +43,6 @@ const Synth = () => {
     setLowestOctave(parseInt(evt.target.value));
   };
 
-  const mainVol = new Tone.Volume(volume);
-
-  const synth = new Tone.PolySynth(Tone.Synth, {
-    oscillator: {
-      type: waveType
-    }
-  }).chain(mainVol, Tone.Destination);
-
-  // console.log(synth.activeVoices);
-
   return (
     <>
     <ul id='navbar'>
@@ -40,11 +52,11 @@ const Synth = () => {
     <div className='synth'>
       <div id='main'>
         <label htmlFor='main-vol'>vol</label>
-        <input id='main-vol'type='range' min={-16} max={4} value={volume} onChange={setMainVol} />
-        <div>tempo</div>
+        <input id='main-vol'type='range' min={-16} max={4} value={volume} onChange={adjustMainVol} />
+        <label htmlFor='main-tempo'>tempo</label>
+        <input id='main-tempo'type='range' min={80} max={200} value={bpm} onChange={adjustTempo} />
       </div>
-      <div id='vco-controls'>
-        <div id='vco1'>
+      <div id='controls'>
           <label htmlFor='select-wave'>WAVE</label>
           <select
             id='select-wave'
@@ -68,7 +80,15 @@ const Synth = () => {
             <option>4</option>
             <option>5</option>
           </select>
-          </div>
+          <label htmlFor='select-octave'>PITCH ({pitch}c)</label>
+          <input
+            id='pitch'
+            type='range'
+            min={-1200}
+            max={1200}
+            onChange={adjustPitch}
+            value={pitch}
+          />
       </div>
       <ul className='keyboard'>
         <Octave octave={lowestOctave} synth={synth} />
