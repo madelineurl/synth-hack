@@ -24,7 +24,7 @@ const Landing = () => {
         <li><button onClick={selectTab} value='about'>about</button></li>
         <li><button onClick={selectTab} value='home'>home</button></li>
       </ul>
-      <h1>micrologue</h1>
+      <h1>softlogue</h1>
       {
         nav === 'home' ? <img src={info[nav]} /> : <p>{info[nav]} </p>
       }
