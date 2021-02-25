@@ -1,7 +1,7 @@
 import React from "react";
 import Key from "./key";
 
-const Octave = ({ synth, octave }) => {
+const Octave = ({ synth, octave, setLowestOctave }) => {
   const bindings = {
     'KeyA': 'C',
     'KeyW': 'C#',
@@ -15,18 +15,30 @@ const Octave = ({ synth, octave }) => {
     'KeyH': 'A',
     'KeyU': 'A#',
     'KeyJ': 'B',
-    'KeyK': 'C'
+    'KeyK': 'C',
+    'KeyO': 'C#',
+    'KeyL': 'D',
+    'KeyP': 'D#',
+    'Semicolon': 'E',
+    'Quote': 'F',
   };
 
   const singleOctave = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 
-  const handleAttack = (evt, note) => {
-    console.log(evt.type, evt.code);
+  const handleAttack = (note, evt) => {
     if (evt.type === 'click') {
       synth.triggerAttackRelease(`${note}${octave.toString()}`, '8n');
-    } else if (evt.type === 'mousdown') {
+    } else if (evt.type === 'mousedown') {
       synth.triggerAttack(`${note}${octave.toString()}`);
-    } else if (evt.type === 'keydown' && bindings[evt.code]) {
+    }
+  };
+
+  const handleKeyboardAttack = (evt) => {
+    if (evt.code === 'KeyZ' && octave < 5) {
+      setLowestOctave(octave - 1);
+    } else if (evt.code === 'KeyX' && octave > 0) {
+      setLowestOctave(octave + 1);
+    } else if (bindings[evt.code]) {
       synth.triggerAttack(`${bindings[evt.code]}${octave.toString()}`);
     }
   };
@@ -34,14 +46,15 @@ const Octave = ({ synth, octave }) => {
   const handleRelease = (evt) => {
     if (evt.type === 'mouseup') {
       synth.triggerRelease();
-    } else {
-      bindings[evt.code] && synth.triggerRelease(`${bindings[evt.code]}${octave.toString()}`);
+    } else if (bindings[evt.code]) {
+      synth.triggerRelease();
     }
   };
 
-  document.addEventListener("keydown", handleAttack);
+  document.addEventListener("keydown", handleKeyboardAttack);
   document.addEventListener("keyup", handleRelease);
 
+  console.log(octave);
   return (
     <>
       {
