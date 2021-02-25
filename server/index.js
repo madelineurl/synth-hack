@@ -20,7 +20,7 @@ app.use((err, req, res, next) => {
 	res.status(err.status || 500).send(err.message || 'Internal server error.');
 });
 
-const PORT = 8000;
+const PORT = process.env.port || 8000;
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}!`);
