@@ -51,7 +51,7 @@ const Synth = () => {
   }
 
   const filter = new Tone.AutoFilter({ frequency: filterCutoff }).toDestination();
-  synth.connect(filter);
+  // synth.connect(filter);
 
   const bindings = {
     'KeyA': `C${lowestOctave}`,
