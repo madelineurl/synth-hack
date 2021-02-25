@@ -15,6 +15,10 @@ body * {
   font-family: inherit;
 }
 
+#app {
+  height: 90vh;
+}
+
 label, select {
   font-size: 1.25rem;
 }
@@ -66,16 +70,23 @@ h1 {
   border-radius: 10px;
   padding: .75rem 1rem;
   font-size: 2rem;
-  margin-top: 2rem;
+  position: relative;
+  top: 5vh;
+}
+
+#play:hover {
+  background: var(--mauve);
+  color: white;
+  transition: 0.3s linear;
 }
 
 #landing {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 500px;
-  height: 40vh;
-  margin: 20vh auto;
+  width: 600px;
+  height: 100%;
+  margin: 8vh auto 0 auto;
 }
 
 #landing h1 {
@@ -85,7 +96,7 @@ h1 {
 .synth {
   width: 1000px;
   margin: 2vh auto;
-  background: linear-gradient(rgba(125, 118, 172, 0.5), rgba(105, 114, 136, 0.4));
+  background: linear-gradient(rgba(125, 118, 172, 0.4), rgba(105, 114, 136, 0.4));
   border-radius: 1em;
   padding: 2em 1em .25em 1em;
   box-shadow: 0 0 50px rgba(105, 114, 136, 0.9) inset, 0 1px rgba(212,152,125,0.2) inset, 0 5px 10px rgba(0,0,0,0.5)
@@ -122,8 +133,14 @@ input[type=range]::-webkit-slider-thumb {
   box-shadow: 1px 1px 5px #000000;
 }
 
-input[type=range]:focus {
+input[type=range]:focus,
+select:focus {
   outline: none;
+}
+
+select {
+  border-radius: 5px;
+  border: 1px solid var(--mauve);
 }
 
 input[type=range]::-ms-track {
@@ -143,7 +160,7 @@ ul.keyboard {
   height: 20rem;
   padding: 3em 1em 0;
   border-radius: 1rem;
-  background: linear-gradient(to bottom right, rgba(133, 136, 152, 0.6), rgba(133, 136, 152, 0.3));
+  background: linear-gradient(to bottom right, rgba(133, 136, 152, 0.4), rgba(133, 136, 152, 0.3));
   box-shadow: 0 0 50px rgba(19, 19, 19, 0.5) inset,0 1px rgba(125, 150, 212, 0.2) inset,0 5px 10px rgba(19, 20, 21, 0.5);
 }
 
@@ -172,7 +189,7 @@ li {
 }
 
 .white.key:hover {
-  background: linear-gradient(to bottom, #eee 0%,rgb(198, 199, 242) 100%);
+  background: linear-gradient(to bottom, #eee 0%,rgb(195, 196, 211) 100%);
 }
 
 .black.key {
@@ -185,9 +202,13 @@ li {
 }
 
 .black.key:hover {
-  background: linear-gradient(45deg,#222 0%,rgb(33, 32, 32) 100%);
+  background: linear-gradient(45deg, #222 0%, rgb(33, 32, 32) 100%);
 }
 
 .G, .A, .B, .D, .E {
   margin: 0 0 0 -1em;
+}
+
+#C, #B {
+  border-radius: 5px;
 }

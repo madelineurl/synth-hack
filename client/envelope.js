@@ -1,27 +1,47 @@
 import React from 'react';
 
-const Envelope = () => {
+const Envelope = ({ adjustEnvelope, envelope }) => {
   return (
     <div id='envelope' className='section flex'>
       <label htmlFor='attack'>attack</label>
         <input
-          id='attack'
+          name='attack'
           type='range'
+          min={0.0}
+          max={4.0}
+          // step='40'
+          onChange={adjustEnvelope}
+          value={envelope.attack}
         />
         <label htmlFor='decay'>decay</label>
         <input
-          id='decay'
+          name='decay'
           type='range'
+          min={0.0}
+          max={4.0}
+          // step='40'
+          onChange={adjustEnvelope}
+          value={envelope.decay}
         />
-        <label htmlFor='attack'>sustain</label>
+        <label htmlFor='sustain'>sustain</label>
         <input
-          id='sustain'
+          name='sustain'
           type='range'
+          min={0.0}
+          max={1.0}
+          // step='10'
+          onChange={adjustEnvelope}
+          value={envelope.sustain}
         />
-        <label htmlFor='attack'>release</label>
+        <label htmlFor='release'>release</label>
         <input
-          id='release'
+          name='release'
           type='range'
+          min={0.0}
+          max={4.0}
+          // step='40'
+          onChange={adjustEnvelope}
+          value={envelope.release}
         />
     </div>
   );

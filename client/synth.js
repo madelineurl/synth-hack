@@ -15,6 +15,12 @@ const Synth = () => {
   const [bpm, setBpm] = useState(120);
   const [voiceMode, setVoiceMode] = useState('mono');
   const [filterCutoff, setFilterCutoff] = useState(0);
+  const [envelope, setEnvelope] = useState({
+    attack: 0.6,
+    decay: 0.2,
+    sustain: 0.5,
+    release: 2
+  });
 
   const mainVol = new Tone.Volume(volume);
   Tone.Transport.bpm.value = bpm;
@@ -47,6 +53,7 @@ const Synth = () => {
   const filter = new Tone.AutoFilter({ frequency: filterCutoff }).toDestination();
   synth.connect(filter);
 
+  console.log(envelope)
   const bindings = {
     'KeyA': `C${lowestOctave}`,
     'KeyW': `C#${lowestOctave}`,
@@ -87,16 +94,24 @@ const Synth = () => {
   const adjustPitch = (evt) => {
     setPitch(evt.target.value);
     synth.set({ detune: evt.target.value });
-    // successfully resetting pitch upon inspection, but has no audible effect
   };
 
   const selectWaveType = (evt) => {
     setWaveType(evt.target.value);
   };
 
-  function selectInstrument(evt) {
+  const selectInstrument = (evt) => {
     setVoiceMode(evt.target.value);
-  }
+  };
+
+  const adjustEnvelope = (evt) => {
+    setEnvelope({
+      ...envelope, [evt.target.name]: parseInt(evt.target.value)
+    });
+    synth.filterEnvelope[evt.target.name] = parseInt(evt.target.value);
+    console.log(synth.filterEnvelope)
+  };
+
 
   return (
     <>
@@ -122,8 +137,8 @@ const Synth = () => {
           selectWaveType={selectWaveType}
           setLowestOctave={setLowestOctave}
         />
-        <Filter setFilterCutoff={setFilterCutoff} />
-        <Envelope />
+        <Filter setFilterCutoff={setFilterCutoff} filterCutoff={filterCutoff} />
+        <Envelope adjustEnvelope={adjustEnvelope} envelope={envelope} />
       </div>
       <ul className='keyboard flex'>
         <Octave octave={lowestOctave} synth={synth} bindings={bindings} />

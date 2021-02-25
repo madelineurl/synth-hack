@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Filter = ({ setFilterCutoff }) => {
+const Filter = ({ setFilterCutoff, filterCutoff }) => {
   return (
     <div id='filter' className='section flex'>
       <label htmlFor='filter-adjust'>FILTER CUTOFF</label>
@@ -10,6 +10,7 @@ const Filter = ({ setFilterCutoff }) => {
           min={-12}
           max={12}
           onChange={(evt) => setFilterCutoff(evt.target.value)}
+          value={filterCutoff}
         />
         <label htmlFor='filter-lfo'>LFO</label>
         <input
