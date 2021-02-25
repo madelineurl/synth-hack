@@ -39,14 +39,15 @@ ul#navbar {
 .synth {
   width: 1000px;
   margin: 5vh auto;
-  background: #777;
+  background: linear-gradient(rgba(167, 181, 193, 0.8), rgba(121, 121, 121, 0.7));
   border-radius: 1em;
   padding: 2em 1em .25em 1em;
+  box-shadow: 0 0 50px rgba(0,0,0,0.5) inset, 0 1px rgba(212,152,125,0.2) inset, 0 5px 15px rgba(0,0,0,0.5)
 }
 
 .controls {
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .section {
@@ -60,8 +61,8 @@ ul.keyboard {
   height: 20rem;
   padding: 3em 1em 0;
   border-radius: 1rem;
-  background: linear-gradient(to bottom right,rgba(0,0,0,0.3),rgba(0,0,0,0));
-  box-shadow: 0 0 50px rgba(0,0,0,0.5) inset,0 1px rgba(212,152,125,0.2) inset,0 5px 15px rgba(0,0,0,0.5)
+  background: linear-gradient(to bottom right, rgba(0,0,0,0.3), rgba(0,0,0,0));
+  box-shadow: 0 0 50px rgba(0,0,0,0.5) inset,0 1px rgba(212,152,125,0.2) inset,0 5px 15px rgba(0,0,0,0.5);
 }
 
 li {
@@ -72,7 +73,7 @@ li {
   float: left;
 }
 
-.key.white {
+.white.key {
   height: 16em;
   width: 3em;
   z-index: 1;
@@ -84,15 +85,15 @@ li {
   z-index: 1;
 }
 
-.key.white:first-of-type(li) {
+.white.key:first-of-type(li) {
   border-radius: 5px 0 5px 5px;
 }
 
-.key.white:hover {
+.white.key:hover {
   background: linear-gradient(to bottom,#eee 0%,rgb(216, 213, 213) 100%);
 }
 
-.key.black {
+.black.key {
   background: linear-gradient(45deg,#222 0%,#555 100%);
   width: 2em;
   height: 150px;
@@ -101,7 +102,7 @@ li {
   box-shadow: -1px -1px 2px rgba(255,255,255,0.2) inset, 0 -5px 2px 3px rgba(0,0,0,0.6) inset, 0 2px 4px rgba(0,0,0,0.5);
 }
 
-.key.black:hover {
+.black.key:hover {
   background: linear-gradient(45deg,#222 0%,rgb(33, 32, 32) 100%);
 }
 

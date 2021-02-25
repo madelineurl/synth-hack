@@ -2,20 +2,66 @@ import React from "react";
 import Key from "./key";
 
 const Octave = ({ synth, octave }) => {
+  const bindings = {
+    'KeyA': 'C',
+    'KeyW': 'C#',
+    'KeyS': 'D',
+    'KeyE': 'D#',
+    'KeyD': 'E',
+    'KeyF': 'F',
+    'KeyT': 'F#',
+    'KeyG': 'G',
+    'KeyY': 'G#',
+    'KeyH': 'A',
+    'KeyU': 'A#',
+    'KeyJ': 'B',
+    'KeyK': 'C'
+  };
+
+  const singleOctave = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+
+  const handleAttack = (evt, note) => {
+    console.log(evt.type, evt.code);
+    if (evt.type === 'click') {
+      synth.triggerAttackRelease(`${note}${octave.toString()}`, '8n');
+    } else if (evt.type === 'mousdown') {
+      synth.triggerAttack(`${note}${octave.toString()}`);
+    } else if (evt.type === 'keydown' && bindings[evt.code]) {
+      synth.triggerAttack(`${bindings[evt.code]}${octave.toString()}`);
+    }
+  };
+
+  const handleRelease = (evt) => {
+    if (evt.type === 'mouseup') {
+      synth.triggerRelease();
+    } else {
+      bindings[evt.code] && synth.triggerRelease(`${bindings[evt.code]}${octave.toString()}`);
+    }
+  };
+
+  document.addEventListener("keydown", handleAttack);
+  document.addEventListener("keyup", handleRelease);
+
   return (
     <>
-      <Key color='white' note='C'octave={octave} synth={synth} />
-      <Key color='black' note='C#' octave={octave} synth={synth}/>
-      <Key color='white' note='D' octave={octave} synth={synth}/>
-      <Key color='black' note='D#' octave={octave} synth={synth}/>
-      <Key color='white' note='E' octave={octave} synth={synth}/>
-      <Key color='white' note='F' octave={octave} synth={synth}/>
-      <Key color='black' note='F#' octave={octave} synth={synth}/>
-      <Key color='white' note='G' octave={octave} synth={synth}/>
-      <Key color='black' note='G#' octave={octave} synth={synth}/>
-      <Key color='white' note='A' octave={octave} synth={synth}/>
-      <Key color='black' note='A#' octave={octave} synth={synth}/>
-      <Key color='white' note='B' octave={octave} synth={synth}/>
+      {
+        singleOctave.map(note => {
+          let color;
+          if (note.indexOf('#') > 0) color = 'black';
+          else color = 'white';
+          return (
+            <Key
+              key={`${note}${octave}`}
+              color={color}
+              note={note}
+              octave={octave}
+              synth={synth}
+              handleAttack={handleAttack}
+              handleRelease={handleRelease}
+            />
+          );
+        })
+      }
     </>
   );
 };

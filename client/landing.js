@@ -16,7 +16,7 @@ const Landing = () => {
 
   return (
     <div id='landing'>
-      <h1>softsynth</h1>
+      <h1>micrologue</h1>
       <p>{info[nav]} </p>
       <ul id='navbar'>
         <li><button onClick={() => selectTab('how-to')}>how-to</button></li>
