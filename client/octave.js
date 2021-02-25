@@ -1,55 +1,45 @@
 import React from "react";
 import Key from "./key";
 
-const Octave = ({ synth, octave }) => {
-  const bindings = {
-    'KeyA': 'C',
-    'KeyW': 'C#',
-    'KeyS': 'D',
-    'KeyE': 'D#',
-    'KeyD': 'E',
-    'KeyF': 'F',
-    'KeyT': 'F#',
-    'KeyG': 'G',
-    'KeyY': 'G#',
-    'KeyH': 'A',
-    'KeyU': 'A#',
-    'KeyJ': 'B',
-    'KeyK': 'C',
-    'KeyO': 'C#',
-    'KeyL': 'D',
-    'KeyP': 'D#',
-    'Semicolon': 'E',
-    'Quote': 'F',
-  };
-
+const Octave = ({ synth, octave, bindings }) => {
   const singleOctave = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 
   const handleAttack = (note, evt) => {
+    const noteToPlay = `${note}${octave.toString()}`;
+
     if (evt.type === 'click') {
-      synth.triggerAttackRelease(`${note}${octave.toString()}`, '8n');
+      if (synth.name === 'Monosynth') synth.triggerAttackRelease(noteToPlay, '8n');
+      else synth.triggerAttackRelease([noteToPlay], '8n');
     } else if (evt.type === 'mousedown') {
-      synth.triggerAttack(`${note}${octave.toString()}`);
+      if (synth.name === 'MonoSynth') synth.triggerAttack(noteToPlay);
+      else synth.triggerAttack([noteToPlay]);
+    }
+  };
+
+  const handleRelease = (note, evt) => {
+    if (evt.type === 'mouseup') {
+      if (synth.name === 'MonoSynth') synth.triggerRelease();
+      else synth.triggerRelease([ `${note}${octave.toString()}`]);
     }
   };
 
   const handleKeyboardAttack = (evt) => {
-    bindings[evt.code] &&
-    synth.triggerAttack(`${bindings[evt.code]}${octave.toString()}`);
+    const noteToPlay = bindings[evt.code];
+    if (noteToPlay) {
+      synth.name === 'MonoSynth' ? synth.triggerAttack(noteToPlay) : synth.triggerAttack([noteToPlay]);
+    }
   };
 
-  const handleRelease = (evt) => {
-    if (evt.type === 'mouseup') {
-      synth.triggerRelease();
-    } else if (bindings[evt.code]) {
-      synth.triggerRelease();
+  const handleKeyboardRelease = (evt) => {
+    const noteToStop = bindings[evt.code];
+    if (noteToStop) {
+      synth.name === 'MonoSynth' ? synth.triggerRelease() : synth.triggerRelease([noteToStop]);
     }
   };
 
   document.addEventListener("keydown", handleKeyboardAttack);
-  document.addEventListener("keyup", handleRelease);
+  document.addEventListener("keyup", handleKeyboardRelease);
 
-  console.log(octave);
   return (
     <>
       {

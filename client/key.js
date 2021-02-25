@@ -7,8 +7,8 @@ const Key = ({ color, note, handleAttack, handleRelease }) => {
     <li
       id={note}
       className={`${keyStyle} ${note}`}
-      onMouseDown={(evt) => handleAttack(note, evt)}
-      onMouseUp={handleRelease}>
+      onMouseDown={evt => handleAttack(note, evt)}
+      onMouseUp={evt => handleRelease(note, evt)}>
     </li>
   );
 };

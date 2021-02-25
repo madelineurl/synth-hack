@@ -19,7 +19,7 @@ const Landing = () => {
       <h1>micrologue</h1>
       <p>{info[nav]} </p>
       <ul id='navbar'>
-        <li><button onClick={() => selectTab('how-to')}>how-to</button></li>
+        <li><button onClick={() => selectTab('how-to')}>how to</button></li>
         <li><button onClick={() => selectTab('about')}>about</button></li>
         <li><button onClick={() => selectTab('landing')}>landing</button></li>
       </ul>

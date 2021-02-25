@@ -11,8 +11,10 @@ const Synth = () => {
   const [pitch, setPitch] = useState(0);
   const [bpm, setBpm] = useState(120);
   const [voiceMode, setVoiceMode] = useState('mono');
+  const [filterCutoff, setFilterCutoff] = useState(0);
 
   const mainVol = new Tone.Volume(volume);
+  const filter = new Tone.AutoFilter({ frequency: filterCutoff }).toDestination().start();
   Tone.Transport.bpm.value = bpm;
   // add metronome to test
 
@@ -23,23 +25,45 @@ const Synth = () => {
         oscillator: {
           type: waveType
         }
-      });
+      }).chain(mainVol, Tone.Destination);
       break;
     case 'poly':
       synth = new Tone.PolySynth(Tone.Synth, {
         oscillator: {
           type: waveType
         }
-      });
+      }).chain(mainVol, Tone.Destination);
       break;
     default:
       synth = new Tone.MonoSynth({
         oscillator: {
           type: waveType
         }
-      });
+      }).chain(mainVol, Tone.Destination);
   }
-  synth.chain(mainVol, Tone.Destination);
+
+  // synth.connect(filter);
+
+  const bindings = {
+    'KeyA': `C${lowestOctave}`,
+    'KeyW': `C#${lowestOctave}`,
+    'KeyS': `D${lowestOctave}`,
+    'KeyE': `D#${lowestOctave}`,
+    'KeyD': `E${lowestOctave}`,
+    'KeyF': `F${lowestOctave}`,
+    'KeyT': `F#${lowestOctave}`,
+    'KeyG': `G${lowestOctave}`,
+    'KeyY': `G#${lowestOctave}`,
+    'KeyH': `A${lowestOctave}`,
+    'KeyU': `A#${lowestOctave}`,
+    'KeyJ': `B${lowestOctave}`,
+    'KeyK': `C${lowestOctave + 1}`,
+    'KeyO': `C#${lowestOctave + 1}`,
+    'KeyL': `D${lowestOctave + 1}`,
+    'KeyP': `D#${lowestOctave + 1}`,
+    'Semicolon': `E${lowestOctave + 1}`,
+    'Quote': `F${lowestOctave + 1}`,
+  };
 
   document.addEventListener("keypress", (evt) => {
     if (evt.code === 'KeyZ' && lowestOctave > 0) {
@@ -75,7 +99,7 @@ const Synth = () => {
     <>
     <ul id='navbar'>
       <li><Link to='/'>back</Link></li>
-      <li><button>how-to</button></li>
+      <li><button>how to</button></li>
     </ul>
     <div className='synth'>
       <div className='controls flex'>
@@ -143,13 +167,13 @@ const Synth = () => {
             </select>
         </div>
         <div id='filter' className='section flex'>
-          <label htmlFor='filter-adjust'>cutoff</label>
+          <label htmlFor='filter-adjust'>FILTER CUTOFF</label>
             <input
               id='filter-adjust'
               type='range'
-              min={80}
-              max={200}
-              // onChange={adjustFilter}
+              min={-12}
+              max={12}
+              onChange={(evt) => setFilterCutoff(evt.target.value)}
             />
         </div>
         <div id='envelope' className='section flex'>
@@ -176,9 +200,9 @@ const Synth = () => {
         </div>
       </div>
       <ul className='keyboard flex'>
-        <Octave octave={lowestOctave} synth={synth} />
-        <Octave octave={lowestOctave + 1} synth={synth} />
-        <Octave octave={lowestOctave + 2} synth={synth}/>
+        <Octave octave={lowestOctave} synth={synth} bindings={bindings} />
+        <Octave octave={lowestOctave + 1} synth={synth} bindings={bindings} />
+        <Octave octave={lowestOctave + 2} synth={synth} bindings={bindings}/>
       </ul>
     </div>
     </>

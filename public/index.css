@@ -11,6 +11,10 @@ body * {
   font-family: inherit;
 }
 
+label, select {
+  font-size: 1.25rem;
+}
+
 .flex {
   display: flex;
 }
@@ -38,6 +42,17 @@ ul#navbar {
 
 #landing h1 {
   margin: 0;
+}
+
+#navbar li {
+  font-size: 1.25rem;
+}
+
+#navbar button {
+  border: none;
+  background: #fff;
+  font-size: 1.25rem;
+  cursor: pointer;
 }
 
 .synth {
