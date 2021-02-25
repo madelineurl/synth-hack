@@ -11,6 +11,13 @@ const Filter = ({ setFilterCutoff }) => {
           max={12}
           onChange={(evt) => setFilterCutoff(evt.target.value)}
         />
+        <label htmlFor='filter-lfo'>LFO</label>
+        <input
+          id='filter-lfo'
+          type='range'
+          min={-12}
+          max={12}
+        />
     </div>
   );
 };

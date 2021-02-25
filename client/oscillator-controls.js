@@ -1,6 +1,7 @@
 import React from 'react';
 
 const OscillatorControls = ({ lowestOctave, voiceMode, selectInstrument, waveType, selectWaveType, setLowestOctave }) => {
+  return (
   <div id='osc' className='section flex'>
     <label htmlFor='select-wave'>VOICE MODE</label>
     <select
@@ -34,7 +35,8 @@ const OscillatorControls = ({ lowestOctave, voiceMode, selectInstrument, waveTyp
       <option>4</option>
       <option>5</option>
     </select>
-  </div>;
+  </div>
+  );
 };
 
 export default OscillatorControls;

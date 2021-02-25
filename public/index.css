@@ -57,11 +57,11 @@ ul#navbar {
 
 .synth {
   width: 1000px;
-  margin: 5vh auto;
-  background: linear-gradient(rgba(167, 181, 193, 0.8), rgba(121, 121, 121, 0.7));
+  margin: 2vh auto;
+  background: linear-gradient(rgba(125, 118, 172, 0.5), rgba(105, 114, 136, 0.4));
   border-radius: 1em;
   padding: 2em 1em .25em 1em;
-  box-shadow: 0 0 50px rgba(0,0,0,0.5) inset, 0 1px rgba(212,152,125,0.2) inset, 0 5px 15px rgba(0,0,0,0.5)
+  box-shadow: 0 0 50px rgba(105, 114, 136, 0.9) inset, 0 1px rgba(212,152,125,0.2) inset, 0 5px 10px rgba(0,0,0,0.5)
 }
 
 .controls {
@@ -103,11 +103,10 @@ input[type=range]::-ms-track {
   width: 100%;
   cursor: pointer;
   border: 1px solid grey;
-  /* box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
 
-  background: transparent;
-  border-color: transparent;
-  color: transparent; */
+#envelope input {
+  margin: .2em 0;
 }
 
 ul.keyboard {
@@ -117,8 +116,8 @@ ul.keyboard {
   height: 20rem;
   padding: 3em 1em 0;
   border-radius: 1rem;
-  background: linear-gradient(to bottom right, rgba(0,0,0,0.3), rgba(0,0,0,0));
-  box-shadow: 0 0 50px rgba(0,0,0,0.5) inset,0 1px rgba(212,152,125,0.2) inset,0 5px 15px rgba(0,0,0,0.5);
+  background: linear-gradient(to bottom right, rgba(133, 136, 152, 0.6), rgba(133, 136, 152, 0.3));
+  box-shadow: 0 0 50px rgba(19, 19, 19, 0.5) inset,0 1px rgba(125, 150, 212, 0.2) inset,0 5px 10px rgba(19, 20, 21, 0.5);
 }
 
 li {
@@ -146,7 +145,7 @@ li {
 }
 
 .white.key:hover {
-  background: linear-gradient(to bottom,#eee 0%,rgb(216, 213, 213) 100%);
+  background: linear-gradient(to bottom, #eee 0%,rgb(198, 199, 242) 100%);
 }
 
 .black.key {

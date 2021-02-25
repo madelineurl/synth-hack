@@ -17,9 +17,8 @@ const Synth = () => {
   const [filterCutoff, setFilterCutoff] = useState(0);
 
   const mainVol = new Tone.Volume(volume);
-  const filter = new Tone.AutoFilter({ frequency: filterCutoff }).toDestination().start();
   Tone.Transport.bpm.value = bpm;
-  // add metronome to test
+  // add metronome to confirm
 
   let synth;
   switch(voiceMode) {
@@ -45,7 +44,8 @@ const Synth = () => {
       }).chain(mainVol, Tone.Destination);
   }
 
-  // synth.connect(filter);
+  const filter = new Tone.AutoFilter({ frequency: filterCutoff }).toDestination();
+  synth.connect(filter);
 
   const bindings = {
     'KeyA': `C${lowestOctave}`,
