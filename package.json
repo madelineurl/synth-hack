@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "deploy": "script/deploy",
     "build": "webpack -w",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
     "start-dev": "npm run build & npm run start-server",
-    "start": "npm run start-dev",
+    "start": "node server",
     "seed": "node seed.js"
   },
   "keywords": [],
