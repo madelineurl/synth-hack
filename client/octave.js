@@ -1,7 +1,7 @@
 import React from "react";
 import Key from "./key";
 
-const Octave = ({ synth, octave, setLowestOctave }) => {
+const Octave = ({ synth, octave }) => {
   const bindings = {
     'KeyA': 'C',
     'KeyW': 'C#',
@@ -34,13 +34,8 @@ const Octave = ({ synth, octave, setLowestOctave }) => {
   };
 
   const handleKeyboardAttack = (evt) => {
-    if (evt.code === 'KeyZ' && octave < 5) {
-      setLowestOctave(octave - 1);
-    } else if (evt.code === 'KeyX' && octave > 0) {
-      setLowestOctave(octave + 1);
-    } else if (bindings[evt.code]) {
-      synth.triggerAttack(`${bindings[evt.code]}${octave.toString()}`);
-    }
+    bindings[evt.code] &&
+    synth.triggerAttack(`${bindings[evt.code]}${octave.toString()}`);
   };
 
   const handleRelease = (evt) => {

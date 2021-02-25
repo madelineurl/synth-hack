@@ -23,22 +23,31 @@ const Synth = () => {
         oscillator: {
           type: waveType
         }
-      }).chain(mainVol, Tone.Destination);
+      });
       break;
     case 'poly':
       synth = new Tone.PolySynth(Tone.Synth, {
         oscillator: {
           type: waveType
         }
-      }).chain(mainVol, Tone.Destination);
+      });
       break;
     default:
       synth = new Tone.MonoSynth({
         oscillator: {
           type: waveType
         }
-      }).chain(mainVol, Tone.Destination);
+      });
   }
+  synth.chain(mainVol, Tone.Destination);
+
+  document.addEventListener("keypress", (evt) => {
+    if (evt.code === 'KeyZ' && lowestOctave > 0) {
+      setLowestOctave(lowestOctave - 1);
+    } else if (evt.code === 'KeyX' && lowestOctave < 5) {
+      setLowestOctave(lowestOctave + 1);
+    }
+  });
 
   const adjustMainVol = (evt) => {
     setVolume(evt.target.value);
@@ -51,15 +60,11 @@ const Synth = () => {
   const adjustPitch = (evt) => {
     setPitch(evt.target.value);
     synth.set({ detune: evt.target.value });
-    // successfully resetting pitch, but but has no audible effect
+    // successfully resetting pitch upon inspection, but has no audible effect
   };
 
   const selectWaveType = (evt) => {
     setWaveType(evt.target.value);
-  };
-
-  const selectLowestOctave = (evt) => {
-    setLowestOctave(parseInt(evt.target.value));
   };
 
   function selectInstrument(evt) {
@@ -127,7 +132,7 @@ const Synth = () => {
             <label htmlFor='select-octave'>OCTAVE</label>
             <select
               id='select-octave'
-              onChange={selectLowestOctave}
+              onChange={(evt) => setLowestOctave(parseInt(evt.target.value))}
               value={lowestOctave}
             >
               <option>1</option>
@@ -171,9 +176,9 @@ const Synth = () => {
         </div>
       </div>
       <ul className='keyboard flex'>
-        <Octave octave={lowestOctave} setLowestOctave={setLowestOctave} synth={synth} />
-        <Octave octave={lowestOctave + 1} setLowestOctave={setLowestOctave} synth={synth} />
-        <Octave octave={lowestOctave + 2} setLowestOctave={setLowestOctave} synth={synth}/>
+        <Octave octave={lowestOctave} synth={synth} />
+        <Octave octave={lowestOctave + 1} synth={synth} />
+        <Octave octave={lowestOctave + 2} synth={synth}/>
       </ul>
     </div>
     </>
