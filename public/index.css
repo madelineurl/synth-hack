@@ -56,6 +56,13 @@ ul#navbar {
   background: #fff;
   font-size: 1.25rem;
   cursor: pointer;
+  color: rgb(51, 49, 77);
+}
+
+#navbar button:focus {
+  outline: none;
+  border: 2px solid var(--mauve);
+  border-radius: 6px;
 }
 
 h1 {

@@ -117,7 +117,7 @@ const Synth = () => {
     <>
     <ul id='navbar'>
       <li><Link to='/'>back</Link></li>
-      <li><button>how to</button></li>
+      {/* <li><button>how to</button></li> */}
     </ul>
     <div className='synth'>
       <div className='controls flex'>
