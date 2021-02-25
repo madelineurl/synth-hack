@@ -8,6 +8,7 @@
     "build": "webpack -w",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
     "start-dev": "npm run build & npm run start-server",
+    "heroku-postbuild": "webpack --mode production",
     "start": "node server",
     "seed": "node seed.js"
   },
