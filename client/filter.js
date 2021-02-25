@@ -7,8 +7,8 @@ const Filter = ({ setFilterCutoff, filterCutoff }) => {
         <input
           id='filter-adjust'
           type='range'
-          min={-12}
-          max={12}
+          min='-12'
+          max='12'
           onChange={(evt) => setFilterCutoff(evt.target.value)}
           value={filterCutoff}
         />
@@ -16,8 +16,8 @@ const Filter = ({ setFilterCutoff, filterCutoff }) => {
         <input
           id='filter-lfo'
           type='range'
-          min={-12}
-          max={12}
+          min='12'
+          max='12'
         />
     </div>
   );

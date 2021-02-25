@@ -22,7 +22,9 @@ const Landing = () => {
       }
       {
         nav === 'how-to' && (
-          <p>Click on the keys with a mouse or use the keyboard to use this synth. Middle C is mapped to the `A` key. Not all of the keys displayed in the UI fit logically into the keyboard mappings, so the keyboard starts one octave higher than the first key you see in the browser. <p>You can shift the available octaves up using `X`, or down using `Z`. Click or press briefly for a shorter note or hold the keys to extend the note. </p><p>The control board is divided into four sections representing the main controls, oscillator controls, filter controls and envelope. Adjust these inputs to shape the synth with different qualities. </p>If you`re new to synths and interested in learning more, Ableton has a great interactive tutorial (also built using Tone.js) available <a href='https://learningsynths.ableton.com' alt='ableton learning synths site'>here</a>.</p>
+          <>
+          <p>Click on the keys with a mouse or use the keyboard to use this synth. Middle C is mapped to the `A` key. Not all of the keys displayed in the UI fit logically into the keyboard mappings, so the keyboard starts one octave higher than the first key you see in the browser.</p> <p>You can shift the available octaves up using `X`, or down using `Z`. Click or press briefly for a shorter note or hold the keys to extend the note. </p><p>The control board is divided into four sections representing the main controls, oscillator controls, filter controls and envelope. Adjust these inputs to shape the synth with different qualities. </p><p>If you`re new to synths and interested in learning more, Ableton has a great interactive tutorial (also built using Tone.js) available <a href='https://learningsynths.ableton.com' alt='ableton learning synths site'>here</a>, and <a href='https://www.youtube.com/watch?v=06cMw_WupZM&ab_channel=JefGibbons' alt='jeff gibbons synth basics on youtube' >Jef Gibbons</a> has a great YouTube channel if you prefer that type of learning.</p>
+          </>
         )
       }
       {

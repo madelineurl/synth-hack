@@ -27,11 +27,16 @@ const Synth = () => {
   // add metronome to confirm
 
   let synth;
+  const { attack, decay, sustain, release } = envelope;
+
   switch(voiceMode) {
     case 'mono':
       synth = new Tone.MonoSynth({
         oscillator: {
           type: waveType
+        },
+        envelope: {
+          attack, decay, sustain, release
         }
       }).chain(mainVol, Tone.Destination);
       break;
@@ -39,6 +44,12 @@ const Synth = () => {
       synth = new Tone.PolySynth(Tone.Synth, {
         oscillator: {
           type: waveType
+        },
+        envelope: {
+          attack: 0.6,
+          decay: 0.2,
+          sustain: 0.5,
+          release: 2
         }
       }).chain(mainVol, Tone.Destination);
       break;
@@ -46,6 +57,12 @@ const Synth = () => {
       synth = new Tone.MonoSynth({
         oscillator: {
           type: waveType
+        },
+        envelope: {
+          attack: 0.6,
+          decay: 0.2,
+          sustain: 0.5,
+          release: 2
         }
       }).chain(mainVol, Tone.Destination);
   }
@@ -107,10 +124,18 @@ const Synth = () => {
     setEnvelope({
       ...envelope, [evt.target.name]: parseInt(evt.target.value)
     });
-    synth.filterEnvelope[evt.target.name] = parseInt(evt.target.value);
+
+    console.log('attack', synth.envelope.attack)
+    console.log('decay', synth.envelope.decay)
+    console.log('sustain', synth.envelope.sustain)
+    console.log('release', synth.envelope.release)
+    console.log('target name', evt.target.name);
+    console.log('state envelope before latest change', envelope)
+    synth.envelope[evt.target.name] = parseInt(evt.target.value);
   };
 
-
+  console.log('attack', synth.envelope.attack)
+  console.log('state attack', envelope.attack);
   return (
     <>
     <ul id='navbar'>
