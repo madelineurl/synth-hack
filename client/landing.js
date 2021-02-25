@@ -23,7 +23,7 @@ const Landing = () => {
         <li><button onClick={() => selectTab('about')}>about</button></li>
         <li><button onClick={() => selectTab('landing')}>landing</button></li>
       </ul>
-      <li><Link to='/synth'>play</Link></li>
+      <li><Link to='/synth' id='play'>play</Link></li>
     </div>
   );
 };

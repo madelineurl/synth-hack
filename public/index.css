@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
+:root {
+  --mauve: rgb(92, 87, 126);
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -30,22 +34,17 @@ ul#navbar {
 
 #navbar li {
   margin: 1rem;
-}
-
-#landing {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 500px;
-  margin: 20vh auto;
-}
-
-#landing h1 {
-  margin: 0;
-}
-
-#navbar li {
   font-size: 1.25rem;
+  color: var(--mauve);
+}
+
+#navbar a {
+  text-decoration: none;
+  color: var(--mauve);
+}
+
+#navbar a:hover {
+  text-decoration: underline;
 }
 
 #navbar button {
@@ -53,6 +52,34 @@ ul#navbar {
   background: #fff;
   font-size: 1.25rem;
   cursor: pointer;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: rgb(51, 49, 77);
+}
+
+#play {
+  text-decoration: none;
+  color: var(--mauve);
+  border: 2px solid var(--mauve);
+  border-radius: 10px;
+  padding: .75rem 1rem;
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+#landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  height: 40vh;
+  margin: 20vh auto;
+}
+
+#landing h1 {
+  margin: 0;
 }
 
 .synth {
