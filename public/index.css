@@ -73,6 +73,43 @@ ul#navbar {
   flex-direction: column;
 }
 
+input, select {
+  margin: .5rem 0;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+  border: 2px solid #555555;
+  border-radius: 10px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  box-shadow: 1px 1px 5px #000000;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid grey;
+  /* box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+
+  background: transparent;
+  border-color: transparent;
+  color: transparent; */
+}
+
 ul.keyboard {
   list-style-type: none;
   position: relative;

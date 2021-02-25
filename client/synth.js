@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import Octave from "./octave";
+import Octave from './octave';
 import * as Tone from 'tone';
-
+import MainControls from './main-controls';
+import OscillatorControls from './oscillator-controls';
+import Filter from './filter';
+import Envelope from './envelope';
 
 const Synth = () => {
   const [waveType, setWaveType] = useState('sine');
@@ -103,101 +106,24 @@ const Synth = () => {
     </ul>
     <div className='synth'>
       <div className='controls flex'>
-        <div id='main' className='section flex'>
-          <label htmlFor='main-vol'>vol</label>
-          <input
-            id='main-vol'
-            type='range'
-            min={-16}
-            max={4}
-            value={volume}
-            onChange={adjustMainVol}
-          />
-          <label htmlFor='main-tempo'>tempo</label>
-          <input
-            id='main-tempo'
-            type='range'
-            min={80}
-            max={200}
-            value={bpm}
-            onChange={adjustTempo}
-          />
-           <label htmlFor='select-octave'>PITCH ({pitch}c)</label>
-            <input
-              id='pitch'
-              type='range'
-              min={-1200}
-              max={1200}
-              onChange={adjustPitch}
-              value={pitch}
-            />
-        </div>
-        <div id='main' className='section flex'>
-            <label htmlFor='select-wave'>VOICE MODE</label>
-            <select
-              id='select-wave'
-              onChange={selectInstrument}
-              value={voiceMode}
-            >
-              <option>mono</option>
-              <option>poly</option>
-            </select>
-            <label htmlFor='select-wave'>WAVE</label>
-            <select
-              id='select-wave'
-              onChange={selectWaveType}
-              value={waveType}
-            >
-                <option>sine</option>
-                <option>square</option>
-                <option>triangle</option>
-                <option>sawtooth</option>
-            </select>
-            <label htmlFor='select-octave'>OCTAVE</label>
-            <select
-              id='select-octave'
-              onChange={(evt) => setLowestOctave(parseInt(evt.target.value))}
-              value={lowestOctave}
-            >
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-        </div>
-        <div id='filter' className='section flex'>
-          <label htmlFor='filter-adjust'>FILTER CUTOFF</label>
-            <input
-              id='filter-adjust'
-              type='range'
-              min={-12}
-              max={12}
-              onChange={(evt) => setFilterCutoff(evt.target.value)}
-            />
-        </div>
-        <div id='envelope' className='section flex'>
-          <label htmlFor='attack'>attack</label>
-            <input
-              id='attack'
-              type='range'
-            />
-            <label htmlFor='decay'>decay</label>
-            <input
-              id='decay'
-              type='range'
-            />
-            <label htmlFor='attack'>sustain</label>
-            <input
-              id='sustain'
-              type='range'
-            />
-            <label htmlFor='attack'>release</label>
-            <input
-              id='release'
-              type='range'
-            />
-        </div>
+       <MainControls
+          bpm={bpm}
+          volume={volume}
+          pitch={pitch}
+          adjustMainVol={adjustMainVol}
+          adjustPitch={adjustPitch}
+          adjustTempo={adjustTempo}
+      />
+        <OscillatorControls
+          lowestOctave={lowestOctave}
+          voiceMode={voiceMode}
+          selectInstrument={selectInstrument}
+          waveType={waveType}
+          selectWaveType={selectWaveType}
+          setLowestOctave={setLowestOctave}
+        />
+        <Filter setFilterCutoff={setFilterCutoff} />
+        <Envelope />
       </div>
       <ul className='keyboard flex'>
         <Octave octave={lowestOctave} synth={synth} bindings={bindings} />
