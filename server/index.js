@@ -1,7 +1,6 @@
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
-const { db } = require('./db');
 
 let app = express();
 
@@ -23,13 +22,6 @@ app.use((err, req, res, next) => {
 
 const PORT = 8000;
 
-const init = async () => {
-  await db.sync();
-
-  app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}!`);
-  });
-};
-
-init();
-
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}!`);
+});
