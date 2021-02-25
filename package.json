@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "deploy": "script/deploy",
-    "build": "webpack -w",
+    "build": "webpack",
+    "build:dev": "npm run build -- --watch --mode development",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
-    "start-dev": "npm run build & npm run start-server",
+    "start-dev": "npm run build:dev & npm run start-server",
+    "heroku-postbuild": "webpack --mode production",
     "start": "node server",
     "seed": "node seed.js"
   },
@@ -31,7 +33,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "babel-loader": "^8.2.2",
