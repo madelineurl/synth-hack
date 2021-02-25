@@ -53,7 +53,6 @@ const Synth = () => {
   const filter = new Tone.AutoFilter({ frequency: filterCutoff }).toDestination();
   synth.connect(filter);
 
-  console.log(envelope)
   const bindings = {
     'KeyA': `C${lowestOctave}`,
     'KeyW': `C#${lowestOctave}`,
@@ -109,7 +108,6 @@ const Synth = () => {
       ...envelope, [evt.target.name]: parseInt(evt.target.value)
     });
     synth.filterEnvelope[evt.target.name] = parseInt(evt.target.value);
-    console.log(synth.filterEnvelope)
   };
 
 
